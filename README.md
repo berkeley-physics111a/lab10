@@ -91,7 +91,7 @@ In a Terminal window (or PowerShell, if on Windows), navigate inside the ```lab1
 
 You can use tab to autocomplete folder/file names. Once inside the ```lab10``` folder, run the command
 
-```pip install .```
+```python3 -m pip install .```
 
 !["A terminal window is shown with py -m pip install . run to install WF_SDK. There are various notices and messages, but no errors, indicating the package was installed successfully."](setup_instruction_pics/pipinstallwfsdknogit.png "Running pip install . to install WF_SDK")
 
@@ -124,5 +124,8 @@ Adding to PATH is generally annoying, but fixes the vast majority of problems th
 
 #### Running the right version?
 
+Make sure you are running the pip installs using ```python3 -m pip install``` instead of just ```pip install```; otherwise this sometimes installs the package for a different version of python which can lead to it not importing properly. If you have multiple versions of python installed, you may need to run  ```python3 -3.11 -m pip install [package]``` (or -3.12, or -3.13, whatever is applicable to your system) - this specifies the version number to install to.
+
 ### Package install issues
 
+The error message will often tell you what's wrong, and if you're unsure, you can google it - Stack Overflow often will have helpful answers for what is causing a particular error message. If you have repeated issues or are really stuck, ask a GSI or tutor, but it's good practice to learn how to read error messages.
