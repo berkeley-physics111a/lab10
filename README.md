@@ -15,11 +15,13 @@ You should get a version >= 3.11. If the first command doesn't work, try ```py3 
 If you did get a version >= 3.11, run ```python3``` (or ```py3``` or ```py``` as appropriate) in your terminal (or PowerShell, if on Windows). This will open an interactive Python session. Run the following:
 
 ```import numpy```
+
 ```import matplotlib```
 
 These should just run successfully without producing any output. If there's an error, you need to install these packages. Use ```quit()``` to exit the interactive Python session and return to the main terminal (or PowerShell, if on Windows). Then run the following:
 
 ```python3 -m pip install --upgrade pip```
+
 ```python3 -m pip install numpy matplotlib```
 
 The first upgrades pip, and the second installs two standard packages we will need. Run ```python3``` again to open the interactive Python session, and try the import statements again to make sure they worked. If they did not even once you have run pip install, see the 'Debugging Tips' section below.
