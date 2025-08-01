@@ -28,7 +28,7 @@ These should just run successfully without producing any output. If there's an e
 
 ```python3 -m pip install numpy matplotlib```
 
-The first upgrades pip, and the second installs two standard packages we will need. Run ```python3``` again to open the interactive Python session, and try the import statements again to make sure they worked. If they did not even once you have run pip install, see the 'Debugging Tips' section below.
+The first upgrades pip, and the second installs two standard packages we will need. Run ```python3``` again to open the interactive Python session, and try the import statements again to make sure they worked. If they did not even after you have run ```pip install```, see the 'Debugging Tips' section below.
 
 #### Git
 
@@ -66,7 +66,7 @@ If you did not install git, you may alternatively download the files individuall
 
 ### Installing the last dependency
 
-You should already have NumPy and Matplotlib installed; see the 'Prerequisite Software' section.
+You should already have NumPy and Matplotlib installed; see the 'Prerequisite Software' section. We're now going to install the package which controls the ADS.
 
 #### With git
 
@@ -102,5 +102,27 @@ If it runs without erroring, run ```python3``` in your terminal (or PowerShell, 
 If it runs without producing any output/erroring, it has installed successfully; run ```quit()``` to close the session - you are ready to begin the lab. If it errors, or if the ```pip install .``` command errored, see the 'Debugging Tips' section.
 
 
-### Debugging Tips
+## Debugging Tips
+
+### I installed Python/the package/git, but then it won't actually run!
+
+#### Check it is on the PATH
+
+If you have installed Python but none of ```py --version```, ```py3 --version```, and ```python3 --version``` produce the correct output in the terminal, a good first step is to check and see if your PATH variable is correct. Your computer system has what are called environment variables, and one of them, called PATH, helps the system know where to look for files/software (this is a very rough explanation). If things aren't properly added to the PATH, your system may not be able to find them.
+
+Go to your application search bar and search 'environment variables'; you should see something like 'edit environment variables' or 'edit system environment variables'; click to open this.
+
+!["Pop up from search bar on one Windows system for the search 'environment variables'; the result 'Edit the system environment variables' comes up."](setup_instruction_pics/systemenvironmentvariables1.png "What application to search for to edit system environment variables")
+
+Then, you should see a button saying something like "environment variables"; click this. You should then see a list of variables. Click to highlight the one called "PATH" and hit the edit button. Then, you should see a list of file paths that are in the variable. You should see one for Python and (if you installed git) git. 
+
+!["Three screens showing, from left to right, the main system environment variables page, with an environment variables button at the bottom. Selecting this gives the middle window, with a list of environment variables. Highlighting 'PATH' and going to 'Edit' produces the right window, which lists the paths in the PATH variable. Red arrows highlight the paths to git and to Python."](setup_instruction_pics/systemenvironmentvariables2.jpg "Red arrows highlight the paths that should be present in your PATH variable")
+
+If you do not, you need to add them. Open your file explorer and find where your Python (and git, if relevant) installs are located. You can use the search bar, or start by going to the 'Local disk' folder. (They tend to be installed in similar folders to the ones in the path in the image above. You may need to go to the 'View' tab in your file explorer and select any checkbox/option to 'show hidden folders' in order to see some of the relevant directories.) Once you find it, highlight the folder, right click and select 'copy path', and then go back to your environment variables window, hit 'New', and paste in your new path. Make sure you add it to your PATH variable, not a different one, and that you do not delete any of the other paths in the variable. Then hit okay, close your terminal, reopen the terminal, and try again.
+
+Adding to PATH is generally annoying, but fixes the vast majority of problems that I have seen with installs.
+
+#### Running the right version?
+
+### Package install issues
 
