@@ -184,7 +184,6 @@ if __name__ == "__main__":
     ads = ADSHardware()
     ads.startup()
 
-    #sandwich all of this in a try/except to make sure the proper disconnects always occur
     try:
         ads.use_wavegen(channel=1, function=wavegen_functions["sine"], offset_v=0, freq_hz=1e3, amp_v=1)
         ### FILL IN THIS LINE FOR L10.2(a)
@@ -201,7 +200,7 @@ if __name__ == "__main__":
         #plt.show()
 
         ### PLOT YOUR DATA HERE FOR L10.3(d)
-    except:#is this the correct structure? maybe nested try/except statements
+    except:
         ads.close_scope()
         ads.close_wavegen()
         ads.disconnect()
