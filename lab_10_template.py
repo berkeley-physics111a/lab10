@@ -20,6 +20,7 @@ Important objects:
     snr (function): not implemented
     wavegen_functions (dict): easy names to access major types of functions wavegen can output
 """
+import traceback
 import numpy as np
 import matplotlib.pyplot as plt
 from WF_SDK import device
@@ -200,7 +201,9 @@ if __name__ == "__main__":
         #plt.show()
 
         ### PLOT YOUR DATA HERE FOR L10.3(d)
-    except:
+    except Exception:
+        #allows you to see errors while ensuring that connections closed
+        traceback.print_exc()
         ads.close_scope()
         ads.close_wavegen()
         ads.disconnect()
