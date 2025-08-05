@@ -40,7 +40,7 @@ class ADSHardware():
         """
         self.handle = device.open()
 
-    def open_scope(self, buffer_size=1000, sample_freq=100e6):
+    def open_scope(self, buffer_size=1000, sample_freq=1e6):
         """Opens connection to the scope.
 
         Args:
@@ -48,9 +48,9 @@ class ADSHardware():
             before being returned. The buffer is a temporary slot for storing a small amount of
             data before it is transferred to its final destination. Defaults to 1000.
             sample_freq (int, optional): How frequently the oscilloscope will sample
-            from the input. Defaults to 100e6. You can decrease this if you have too
+            from the input. Defaults to 1e6. You can decrease this if you have too
             many data points/the function is taking awhile to run for the time scale you need.
-            (1e6 or even 16e3 can be reasonable selections.)
+            (16e3 can be a reasonable selection.)
         """
         scope.open(self.handle, buffer_size=buffer_size, sampling_frequency=sample_freq)
 
@@ -107,7 +107,7 @@ class ADSHardware():
         """
         device.close(self.handle)
 
-def oscilloscope_run(ads_object: ADSHardware, n_points: int, channel: int, sampling_freq=100e6):
+def oscilloscope_run(ads_object: ADSHardware, n_points: int, channel: int, sampling_freq=1e6):
     """Collects data from the oscilloscope.
 
     Args:
@@ -115,16 +115,16 @@ def oscilloscope_run(ads_object: ADSHardware, n_points: int, channel: int, sampl
         n_points (int): number of data points to collect; 1000-2000 is a good starting point
         channel (int): which channel to collect data from
         sampling_freq (int, optional): How frequently the oscilloscope will sample
-        from the input. Defaults to 100e6. You can decrease this if you have too
+        from the input. Defaults to 1e6. You can decrease this if you have too
         many data points/the function is taking awhile to run for the time scale you need.
-        (1e6 or even 16e3 can be reasonable selections.)
+        (16e3 can be a reasonable selection.)
 
     Returns:
         data (dict): has two keys, "x" and "y" which have time (ms) and voltage (V) data
     """
     #test 16 khz, 1 mhz as well for sampling_freq
     data = {}
-    ads_object.open_scope()
+    ads_object.open_scope(sample_freq=sampling_freq)
     buffer = ads_object.read_scope(channel=channel)
     data["y"] = np.mean(buffer)
     data["x"] = np.array([0])
