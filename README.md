@@ -106,6 +106,10 @@ If it runs without producing any output/erroring, it has installed successfully;
 
 ### I installed Python/the package/git, but then it won't actually run!
 
+#### Are you on a Mac?
+
+If you are on a Mac and you are seeing something like ```OSError dlopen(... dwf.framework)``` when you try to ```import WF_SDK```, you need to re-install Waveforms and make sure you drag the ```dwf_framework``` folder into the ```Framework``` folder. If dragging doesn't work, you may need to manually copy it in.
+
 #### Check it is on the PATH
 
 If you have installed Python but none of ```py --version```, ```py3 --version```, and ```python3 --version``` produce the correct output in the terminal, a good first step is to check and see if your PATH variable is correct. Your computer system has what are called environment variables, and one of them, called PATH, helps the system know where to look for files/software (this is a very rough explanation). If things aren't properly added to the PATH, your system may not be able to find them.
