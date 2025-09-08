@@ -21,6 +21,7 @@ Important objects:
     wavegen_functions (dict): easy names to access major types of functions wavegen can output
 """
 import traceback
+import time
 import numpy as np
 import matplotlib.pyplot as plt
 from WF_SDK import device
@@ -107,7 +108,7 @@ class ADSHardware():
         """
         device.close(self.handle)
 
-def oscilloscope_run(ads_object: ADSHardware, n_points: int, channel: int, sampling_freq=1e6):
+def oscilloscope_run(ads_object: ADSHardware, n_points: int, channel: int, sampling_freq=1e6, buffer_size=1000):
     """Collects data from the oscilloscope.
 
     Args:
@@ -118,21 +119,28 @@ def oscilloscope_run(ads_object: ADSHardware, n_points: int, channel: int, sampl
         from the input. Defaults to 1e6. You can decrease this if you have too
         many data points/the function is taking awhile to run for the time scale you need.
         (16e3 can be a reasonable selection.)
+        buffer_size (int): Defaults to 1000. Number of points oscilloscope gets at a time.
 
     Returns:
         data (dict): has two keys, "x" and "y" which have time (ms) and voltage (V) data
+        This function works by pulling a buffer n_points times. The time between points in
+        the buffer is determined by the sampling frequency, and the time between buffers is
+        determined by how long it takes the code to run - this is recorded in loop_offset_time,
+        which records how 'offset' each buffer is from 0 time. The contents of the buffer are
+        averaged to reduce noise.
     """
-    #test 16 khz, 1 mhz as well for sampling_freq
     data = {}
-    ads_object.open_scope(sample_freq=sampling_freq)
-    buffer = ads_object.read_scope(channel=channel)
-    data["y"] = np.mean(buffer)
-    data["x"] = np.array([0])
+    ads_object.open_scope(sample_freq=sampling_freq, buffer_size=buffer_size)
+    data["y"] = np.zeros(n_points)
+    data["x"] = np.zeros(n_points)
+    loop_offset_time = 0
+    loop_start_time = time.time()
     for i in range(n_points):
-        buffer = np.mean(ads_object.read_scope(channel=channel))
-        data["y"] = np.append(data["y"], buffer)
-        #MODIFY THE LINE BELOW THIS ONE IN L10.2(c)
-        data["x"] = np.append(data["x"], np.array([i]))
+        buffer_mean, loop_offset_time = np.mean(ads_object.read_scope(channel=channel)), time.time() - loop_start_time
+        data["y"][i] = buffer_mean
+        MS_CONVERSION = 1e3
+        #MODIFY THE LINE BELOW THIS ONE IN L10.2(d)
+        data["x"][i] = i
     ads_object.close_scope()
     return data
 
