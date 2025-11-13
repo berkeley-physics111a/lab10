@@ -251,7 +251,7 @@ def demodulate_lockin(ads_object: ADSHardware, nu_mod: float, nu_3db: float, dur
 
     #we have to start the wavegen and oscilloscope read right after each other
     #in order to achieve phase locking
-    test = ads.use_wavegen(channel=1, 
+    test = ads_object.use_wavegen(channel=1, 
                     function=wavegen_functions["sine"], 
                     offset_v=2.75, 
                     freq_hz=nu_mod, 
