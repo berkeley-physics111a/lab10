@@ -159,13 +159,13 @@ def fft(data: dict):
 
     return fft_result
 
-def butter_lowpass_filter(data, cutoff: float, fs=1e6, order=5):
+def butter_lowpass_filter(data, cutoff: float, fs: float, order=5):
     """Creates and applies a lowpass filter.
 
     Args:
         data (list): Provides y data in V obtained from oscilloscope.
         cutoff (float): 3 dB frequency (Hz) for low pass filter.
-        fs (float, optional): Sampling frequency data was taken at. Defaults to 1e6.
+        fs (float): Sampling frequency data was taken at.
         order (int, optional): Order of the filter. Defaults to 5.
 
     Returns:
