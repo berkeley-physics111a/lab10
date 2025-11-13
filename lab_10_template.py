@@ -398,9 +398,9 @@ if __name__ == "__main__":
         ### APPROACH COMPARISON
 
         #if you want to use data from a different run, uncomment the following lines
-        #dc_baseband_data["x"], dc_baseband_data["y"] = np.loadtxt("/heartbeat_data/FILENAME")
-        #demod_data_radio["x"], demod_data_radio["y"] = np.loadtxt("/heartbeat_data/FILENAME")
-        #demod_data_lockin["x"], demod_data_lockin["y"] = np.loadtxt("/heartbeat_data/FILENAME")
+        #dc_baseband_data["x"], dc_baseband_data["y"] = np.loadtxt("./heartbeat_data/FILENAME")
+        #demod_data_radio["x"], demod_data_radio["y"] = np.loadtxt("./heartbeat_data/FILENAME")
+        #demod_data_lockin["x"], demod_data_lockin["y"] = np.loadtxt("./heartbeat_data/FILENAME")
 
         # UNCOMMENT THE CODE BELOW FOR L10.6(c)
         '''
