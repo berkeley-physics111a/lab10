@@ -22,6 +22,7 @@ Important objects:
 """
 import traceback
 import time
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.signal as sig
@@ -224,7 +225,7 @@ def demodulate_radio(data: dict, nu_3db: float, save=True):
 
     #save the data if desired
     if save:
-        fname = '/heartbeat_data/demod_radio'+time.strftime("%Y%m%d-%H%M%S")
+        fname = os.path.join('./heartbeat_data', 'demod_lockin'+time.strftime("%Y%m%d-%H%M%S")+".txt")
         save_array = np.array([demod_data["x"], demod_data["y"]])
         np.savetxt(fname, save_array)
 
@@ -313,7 +314,7 @@ def demodulate_lockin(ads_object: ADSHardware, nu_mod: float, nu_3db: float, dur
 
     #save the data if desired
     if save:
-        fname = '/heartbeat_data/demod_lockin'+time.strftime("%Y%m%d-%H%M%S")
+        fname = os.path.join('./heartbeat_data', 'demod_lockin'+time.strftime("%Y%m%d-%H%M%S")+".txt")
         save_array = np.array([demodulated_data["x"], demodulated_data["y"]])
         np.savetxt(fname, save_array)
 
@@ -361,7 +362,7 @@ if __name__ == "__main__":
         plt.title("DC Baseband Data")
         plt.show()
 
-        fname = '/heartbeat_data/dc_baseband' + time.strftime("%Y%m%d-%H%M%S")+".txt"
+        fname = os.path.join('./heartbeat_data', 'demod_lockin'+time.strftime("%Y%m%d-%H%M%S")+".txt")
         np.savetxt(fname, np.array([dc_baseband_data["x"], dc_baseband_data["y"]]))
 
         fft_dc_baseband = fft(dc_baseband_data)
