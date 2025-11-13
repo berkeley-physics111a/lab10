@@ -348,7 +348,7 @@ if __name__ == "__main__":
         '''
         ads.use_wavegen(channel=1,
                         function=wavegen_functions["dc"],
-                        offset=2.75)
+                        offset_v=2.75)
         time.sleep(1) #so everything can 'settle' before data is collected
 
         dc_baseband_data = oscilloscope_run(ads, duration=5, channel=1)
