@@ -406,7 +406,7 @@ if __name__ == "__main__":
 
         # UNCOMMENT THE CODE BELOW FOR L10.6(c)
         '''
-        fig, axs = plt.subplots([3, 1])
+        fig, axs = plt.subplots(3, 1)
         axs[0].plot(dc_baseband_data["x"], dc_baseband_data["y"])
         axs[0].set_title("DC Baseband")
         axs[1].plot(demod_data_radio["x"], demod_data_radio["y"])
