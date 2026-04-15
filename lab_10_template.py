@@ -118,7 +118,7 @@ def oscilloscope_run(ads_object: ADSHardware, duration: int, channel: int, sampl
         duration (int): time length of trace to collect in seconds
         channel (int): which channel to collect data from
         sampling_freq (int, optional): How frequently the oscilloscope will sample
-        from the input. Defaults to 1e6. You can decrease this if you have too
+        from the input. Defaults to 500. You can decrease this if you have too
         many data points/the function is taking awhile to run for the time scale you need.
         (16e3 can be a reasonable selection.)
 
