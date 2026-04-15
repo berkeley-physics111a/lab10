@@ -330,7 +330,8 @@ if __name__ == "__main__":
     try:
         ads.use_wavegen(channel=1, function=wavegen_functions["sine"], offset_v=0, freq_hz=1e3, amp_v=1)
         ### COMMENT OUT THE LINE BELOW FOR L10.2(a)
-        time.sleep(10)
+        time.sleep(10) #so you can see the LED blink in 10.1 before wavegen is closed 
+        time.sleep(1) #so everything can 'settle' before data is collected
         ### FILL IN THIS LINE FOR L10.2(a)
         raw_data = ...
         ads.close_wavegen()
