@@ -425,6 +425,7 @@ if __name__ == "__main__":
         
         plt.show()
         '''
+        ads.disconnect()
 
     except Exception:
         #allows you to see errors while ensuring that connections closed
